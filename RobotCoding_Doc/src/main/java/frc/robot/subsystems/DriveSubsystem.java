@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 // import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveCommandSpark;
 
 /**
  * Add your docs here.
@@ -21,6 +22,7 @@ public class DriveSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-     setDefaultCommand(new DriveCommand());
+    // setDefaultCommand(new DriveCommand());
+    setDefaultCommand(new DriveCommandSpark());
   }
 }

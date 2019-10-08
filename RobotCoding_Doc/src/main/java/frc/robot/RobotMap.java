@@ -21,4 +21,11 @@ public class RobotMap {
     public static int LeftSlave = 2;
     public static int rightMaster = 3;
     public static int rightSlave = 4;
+
+    public static int LeftMasterSpark = 1;
+    public static int LeftSlaveSpark = 2;
+    public static int rightMasterSpark = 3;
+    public static int rightSlaveSpark = 4;
+
+    public static int DirChangeButton = 0;
 }

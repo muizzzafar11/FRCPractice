@@ -7,32 +7,30 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-// import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 
-public class DriveCommand extends Command {
+public class DriveCommandSpark extends Command {
 
-  static WPI_TalonSRX leftMaster = new WPI_TalonSRX(RobotMap.LeftMaster);
-  static WPI_TalonSRX leftSlave = new WPI_TalonSRX(RobotMap.LeftSlave);
-  static WPI_TalonSRX rightMaster = new WPI_TalonSRX(RobotMap.rightMaster);
-  static WPI_TalonSRX rightSlave = new WPI_TalonSRX(RobotMap.rightSlave);
+  Spark leftMasteSpark = new Spark(RobotMap.LeftMasterSpark);
+  Spark leftSlaveSpark = new Spark(RobotMap.LeftSlaveSpark);
+  Spark RightMasteSpark = new Spark(RobotMap.rightMasterSpark);
+  Spark RightSlaveSpark = new Spark(RobotMap.rightSlaveSpark);
 
-  static SpeedControllerGroup left = new SpeedControllerGroup(leftMaster, leftSlave);
-  static SpeedControllerGroup right = new SpeedControllerGroup(rightMaster, rightSlave);
+  SpeedControllerGroup leftSpark = new SpeedControllerGroup(leftMasteSpark, leftSlaveSpark);
+  SpeedControllerGroup rightSpark = new SpeedControllerGroup(RightMasteSpark, RightSlaveSpark);
 
-  public static DifferentialDrive drive = new DifferentialDrive(left, right);
+  DifferentialDrive sparkDrive = new DifferentialDrive(leftSpark, rightSpark);
 
-  public DriveCommand() {
+  public DriveCommandSpark() {
     // Use requires() here to declare subsystem dependencies
-
-    requires(Robot.driveSubsystem);
+    requires(new DriveSubsystem());
   }
 
   // Called just before this Command runs the first time
@@ -43,7 +41,8 @@ public class DriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    drive.arcadeDrive(-OI.stick.getRawAxis(1), OI.stick.getRawAxis(0));
+    sparkDrive.arcadeDrive(-OI.stick.getRawAxis(1) * Robot.Direction, OI.stick.getRawAxis(0));
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

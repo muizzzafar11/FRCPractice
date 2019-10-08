@@ -31,6 +31,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class Robot extends TimedRobot {
 
   public static DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public static int Direction = 1;
   public static OI m_oi;
 
   Command m_autonomousCommand;

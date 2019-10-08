@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ChangeDirection;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,28 +23,32 @@ public class OI {
   // You create one by telling it which joystick it's on and which button
   // number it is.
   // Joystick stick = new Joystick();
-  // Button button = new JoystickButton(stick, buttonNumber);
 
   public static Joystick stick = new Joystick(RobotMap.port_joyStick);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+  public static Button button = new JoystickButton(stick, RobotMap.DirChangeButton);
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+  public void Change_Direction_OI() {
+    // button.whenPressed(new ChangeDirection());
+    button.whenPressed(new ChangeDirection());
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+    // There are a few additional built in buttons you can use. Additionally,
+    // by subclassing Button you can create custom triggers and bind those to
+    // commands the same as any other Button.
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+    //// TRIGGERING COMMANDS WITH BUTTONS
+    // Once you have a button, it's trivial to bind it to a button in one of
+    // three ways:
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+    // Start the command when the button is pressed and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenPressed(new ExampleCommand());
 
+    // Run the command while the button is being held down and interrupt it once
+    // the button is released.
+    // button.whenPressed(new DirChangeButton());
+    // Start the command when the button is released and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenReleased(new ExampleCommand());
+  }
 }
